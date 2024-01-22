@@ -21,6 +21,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(__dirname + '/node_modules/bootstrap/dist')); //added in Project 1 in "Restructure - Dependencies" lesson
 app.use(express.static(__dirname + '/node_modules/jquery/dist/')); //added in Project 1 in "Restructure - Dependencies" lesson
 app.use(express.static(__dirname + '/node_modules/typed.js/lib')); //added in Project 1 in "Restructure - Dependencies" lesson
+app.use(express.static(__dirname + '/node_modules/bootstrap-icons')); //added in Project 1 in "Restructure - Dependencies" lesson
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
