@@ -5,6 +5,12 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
+var homeRouter = require('./routes/home'); //added in Project 2 in "Restructure routing (part 1)"
+var aboutRouter = require('./routes/about'); //added in Project 2 in "Restructure routing (part 1)"
+var servicesRouter = require('./routes/services'); //added in Project 2 in "Restructure routing (part 1)"
+var recommendationsRouter = require('./routes/recommendations'); //added in Project 2 in "Restructure routing (part 1)"
+var portfolioRouter = require('./routes/portfolio'); //added in Project 2 in "Restructure routing (part 1)"
+var contactRouter = require('./routes/contact'); //added in Project 2 in "Restructure routing (part 1)"
 var usersRouter = require('./routes/users');
 
 var app = express();
@@ -24,6 +30,12 @@ app.use(express.static(__dirname + '/node_modules/typed.js/lib')); //added in Pr
 app.use(express.static(__dirname + '/node_modules/bootstrap-icons')); //added in Project 1 in "Restructure - Dependencies" lesson
 
 app.use('/', indexRouter);
+app.use('/home', homeRouter); //added in Project 2 in "Restructure routing (part 1)"
+app.use('/about', aboutRouter); //added in Project 2 in "Restructure routing (part 1)"
+app.use('/services', servicesRouter); //added in Project 2 in "Restructure routing (part 1)"
+app.use('/recommendations', recommendationsRouter); //added in Project 2 in "Restructure routing (part 1)"
+app.use('/portfolio', portfolioRouter); //added in Project 2 in "Restructure routing (part 1)"
+app.use('/contact', contactRouter); //added in Project 2 in "Restructure routing (part 1)"
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
