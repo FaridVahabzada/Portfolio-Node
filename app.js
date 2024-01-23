@@ -13,7 +13,14 @@ var portfolioRouter = require('./routes/portfolio'); //added in Project 2 in "Re
 var contactRouter = require('./routes/contact'); //added in Project 2 in "Restructure routing (part 1)"
 var usersRouter = require('./routes/users');
 
+var loginRouter = require('./routes/login');
+
+var passport = require('passport')
+var session = require('express-session');
+var JsonStore = require('express-session-json')(session);
 var app = express();
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -29,6 +36,14 @@ app.use(express.static(__dirname + '/node_modules/jquery/dist/')); //added in Pr
 app.use(express.static(__dirname + '/node_modules/typed.js/lib')); //added in Project 1 in "Restructure - Dependencies" lesson
 app.use(express.static(__dirname + '/node_modules/bootstrap-icons')); //added in Project 1 in "Restructure - Dependencies" lesson
 
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false,
+  store: new JsonStore()
+}));
+app.use(passport.authenticate('session'));
+
 app.use('/', indexRouter);
 app.use('/home', homeRouter); //added in Project 2 in "Restructure routing (part 1)"
 app.use('/about', aboutRouter); //added in Project 2 in "Restructure routing (part 1)"
@@ -37,6 +52,8 @@ app.use('/recommendations', recommendationsRouter); //added in Project 2 in "Res
 app.use('/portfolio', portfolioRouter); //added in Project 2 in "Restructure routing (part 1)"
 app.use('/contact', contactRouter); //added in Project 2 in "Restructure routing (part 1)"
 app.use('/users', usersRouter);
+
+app.use('/login', loginRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
