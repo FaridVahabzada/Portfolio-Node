@@ -5,6 +5,11 @@ const path = require('path');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  let data = fs.readFileSync(path.resolve(__dirname, '../data/recommendations.json'));
+  res.render('index', { data: JSON.parse(data) });
+});
+
+router.get('/', function(req, res, next) {
   let data = fs.readFileSync(path.resolve(__dirname, '../data/introductionArray.json'));
   res.render('index', { array: JSON.parse(data) });
 });
