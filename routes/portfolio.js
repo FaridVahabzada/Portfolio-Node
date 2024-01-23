@@ -8,6 +8,9 @@ var jsonParser = bodyparser.json();
 const fs = require('fs');
 const path = require('path');
 
+var ensureLogIn = require('connect-ensure-login').ensureLoggedIn;
+var ensureLoggedIn = ensureLogIn();
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   let data = fs.readFileSync(path.resolve(__dirname, "../data/portfolio.json"));
@@ -34,7 +37,7 @@ router.post('/', jsonParser, function(req, res, next) {
   res.end();
 });
 
-router.delete('/', jsonParser, function(req, res, next) {
+router.delete('/', jsonParser, ensureLoggedIn, function(req, res, next) {
   let rawdata = fs.readFileSync(path.resolve(__dirname, "../data/portfolio.json"));
   let portfoliosArray = JSON.parse(rawdata);
   const newArray = portfoliosArray.filter(x => x.name !== req.body.name)
